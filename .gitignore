@@ -1,0 +1,6 @@
+.idea
+composer.lock
+phpunit.xml
+report
+vendor
+tests/output
