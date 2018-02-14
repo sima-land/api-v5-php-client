@@ -221,7 +221,8 @@ class AbstractListTest extends BaseCase
         $this->assertArrayHasKey($keyPage, $abstractObject->getGetParams());
     }
 
-    public function testSetGetCountIteration() {
+    public function testSetGetCountIteration()
+    {
         $abstractObject = $this->getAbstractObject();
         $abstractObject->countThreads = 2;
         $abstractObject->setCountIteration(2);

@@ -380,8 +380,9 @@ abstract class AbstractList extends Object implements \Iterator
      *
      * @param int $value
      */
-    public function setCountIteration($value) {
-        $this->countIteration = (int) $value;
+    public function setCountIteration($value)
+    {
+        $this->countIteration = (int)$value;
     }
 
     /**
@@ -389,7 +390,8 @@ abstract class AbstractList extends Object implements \Iterator
      *
      * @return int
      */
-    public function getCountIteration() {
+    public function getCountIteration()
+    {
         return $this->countIteration;
     }
 }
