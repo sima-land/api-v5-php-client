@@ -1,0 +1,34 @@
+{
+    "name": "sima-land/api-v5-php-client",
+    "type": "library",
+    "description": "Client library for Simaland APIs",
+    "keywords": ["simaland", "api", "php", "client"],
+    "homepage": "https://github.com/sima-land/api-v5-php-client",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evgeny Gavrilov",
+            "email": "e.r.gavrilov@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4",
+        "guzzlehttp/guzzle": "~6",
+        "monolog/monolog": "~1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4",
+        "scrutinizer/ocular": "~1"
+    },
+    "autoload": {
+        "psr-4": {
+            "SimaLand\\API\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SimaLand\\API\\Tests\\": "tests"
+        }
+    }
+}
