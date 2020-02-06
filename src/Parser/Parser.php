@@ -3,7 +3,7 @@
 namespace SimaLand\API\Parser;
 
 use SimaLand\API\AbstractList;
-use SimaLand\API\Object;
+use SimaLand\API\BaseObject;
 
 /**
  * Загрузка и сохранение всех записей сущностей.
@@ -25,7 +25,7 @@ use SimaLand\API\Object;
  *
  * ```
  */
-class Parser extends Object
+class Parser extends BaseObject
 {
     /**
      * @var array
