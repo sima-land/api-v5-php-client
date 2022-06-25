@@ -1,9 +1,9 @@
 {
-    "name": "sima-land/api-v5-php-client",
+    "name": "progerwtf/api-v5-php-client",
     "type": "library",
     "description": "Client library for Simaland APIs",
     "keywords": ["simaland", "api", "php", "client"],
-    "homepage": "https://github.com/sima-land/api-v5-php-client",
+    "homepage": "https://github.com/progerwtf/api-v5-php-client",
     "minimum-stability": "stable",
     "license": "MIT",
     "authors": [
