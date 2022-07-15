@@ -14,7 +14,7 @@ class AbstractListTest extends BaseCase
     /**
      * @inheritdoc
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->category = require(TEST_DIR . "/data/category.php");
@@ -33,9 +33,6 @@ class AbstractListTest extends BaseCase
         $mock->expects($this->any())
             ->method('getEntity')
             ->will($this->returnValue('entity'));
-        $mock->expects($this->any())
-            ->method('getQueryNextPage')
-            ->will($this->returnValue([]));
         return $mock;
     }
 
@@ -59,12 +56,10 @@ class AbstractListTest extends BaseCase
         $this->assertEquals(2, count($requests));
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testInvalidSetRequest()
     {
         $abstractObject = $this->getAbstractObject();
+        $this->expectException(\Exception::class);
         $abstractObject->setRequests(['test']);
     }
 
@@ -167,9 +162,6 @@ class AbstractListTest extends BaseCase
         }
     }
 
-    /**
-     * @expectedException \SimaLand\API\Exception
-     */
     public function testExceptionRepeat()
     {
         $this->setGuzzleHttpResponse(new Response(500, [], 'Internal Server Error'));
@@ -178,6 +170,7 @@ class AbstractListTest extends BaseCase
         $abstractObject->countThreads = 1;
         $abstractObject->repeatTimeout = 1;
         $abstractObject->repeatCount = 1;
+        $this->expectException(Exception::class);
         $abstractObject->next();
     }
 
@@ -198,9 +191,6 @@ class AbstractListTest extends BaseCase
         $this->assertArrayHasKey("id", $current);
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testListException()
     {
         $this->setGuzzleHttpResponse(function () {
@@ -209,6 +199,7 @@ class AbstractListTest extends BaseCase
         $abstractObject = $this->getAbstractObject();
         $abstractObject->countThreads = 1;
         $abstractObject->repeatCount = 1;
+        $this->expectException(\Exception::class);
         $abstractObject->next();
     }
 

@@ -17,12 +17,10 @@ class ParserTest extends BaseCase
         return TEST_DIR . 'output' . DIRECTORY_SEPARATOR . "parser_meta";
     }
 
-    /**
-     * @expectedException \Exception
-     * @expectedExceptionMessage Param "metaFilename" can`t be empty
-     */
     public function testInvalidConstruct()
     {
+        $this->expectException(\Exception::class);
+        $this->expectExceptionMessage('Param "metaFilename" can`t be empty');
         new Parser();
     }
 
