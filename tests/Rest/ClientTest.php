@@ -44,38 +44,27 @@ class ClientTest extends BaseCase
         );
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testEmptyLogin()
     {
+        $this->expectException(\Exception::class);
         new Client();
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testEmptyPassword()
     {
+        $this->expectException(\Exception::class);
         new Client(['login' => 'test']);
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testInvalidLoginPassword()
     {
         $client = $this->getClient();
         $this->setGuzzleHttpResponse(new Response(401, [], 'Unauthorized'));
-        $oldTokenPath = $client->tokenPath;
         $client->tokenPath = null;
+        $this->expectException(\Exception::class);
         $client->get('user');
-        $client->tokenPath = $oldTokenPath;
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testInvalidTokenPath()
     {
         $client = new Client([
@@ -84,6 +73,7 @@ class ClientTest extends BaseCase
             'tokenPath' => TEST_DIR . 'fake',
             'logger' => $this->getLogger()
         ]);
+        $this->expectException(\Exception::class);
         $client->get('user');
     }
 
@@ -132,12 +122,10 @@ class ClientTest extends BaseCase
         $this->assertEquals($body['items'], $responseBody['items']);
     }
 
-    /**
-     * @expectedException \Exception
-     */
     public function testInvalidBatchQuery()
     {
         $client = $this->getClient();
+        $this->expectException(\Exception::class);
         $client->batchQuery(['test']);
     }
 

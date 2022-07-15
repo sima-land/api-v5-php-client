@@ -7,10 +7,11 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Monolog\Handler\NullHandler;
 use Monolog\Logger;
+use PHPUnit\Framework\TestCase;
 use SimaLand\API\BaseObject;
 use SimaLand\API\Rest\Client;
 
-class BaseCase extends \PHPUnit_Framework_TestCase
+class BaseCase extends TestCase
 {
     /** @var \SimaLand\API\Rest\Client */
     private $client;
