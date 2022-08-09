@@ -6,6 +6,7 @@ use GuzzleHttp\Psr7\Response;
 use SimaLand\API\Rest\Client;
 use SimaLand\API\Rest\Request;
 use SimaLand\API\Tests\BaseCase;
+use GuzzleHttp\Psr7\Utils;
 
 class ClientTest extends BaseCase
 {
@@ -96,17 +97,20 @@ class ClientTest extends BaseCase
         $tokenPath = TEST_DIR . 'output';
         $fileToken = $tokenPath . "/token.txt";
         file_put_contents($fileToken, 'token');
+        $jsonToken = <<<JSON
+{"token": "$token"}
+JSON;
 
         $this->setGuzzleHttpResponse(new Response(401, [], 'Unauthorized'));
-        $this->setGuzzleHttpResponse(new Response(204, ['Authorization' => [$token]], null));
-        $this->setGuzzleHttpResponse(new Response(200, [], 'ok'));
+        $this->setGuzzleHttpResponse((new Response(200, ['Authorization' => [$token]], null)));
+        $this->setGuzzleHttpResponse(new Response(200, [], Utils::streamFor($jsonToken)));
 
         $client = $this->getClient();
         $oldTokenPath = $client->tokenPath;
         $client->tokenPath = $tokenPath;
         $response = $client->get('user');
         $client->tokenPath = $oldTokenPath;
-        $this->assertEquals('ok', $response->getBody()->getContents());
+        $this->assertEquals($jsonToken, $response->getBody()->getContents());
         $this->assertEquals($token, file_get_contents($fileToken));
         @unlink($fileToken);
     }

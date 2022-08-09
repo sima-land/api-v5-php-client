@@ -224,7 +224,7 @@ class Client extends BaseObject
             "regulation" => $this->regulation
         ];
         $response = $client->request('POST', $this->createUrl('signin'), $options);
-        if ($response->getStatusCode() != 204) {
+        if ($response->getStatusCode() != 200) {
             throw new \Exception($response->getReasonPhrase(), $response->getStatusCode());
         }
         $headerAuth = $response->getHeader("Authorization");
